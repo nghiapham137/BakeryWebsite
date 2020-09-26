@@ -12,9 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <title>Order Page</title>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="../Style/HomeStyle.css">
 </head>
 <body>
@@ -50,34 +48,74 @@
         </nav>
     </div>
     <h3>Product Menu</h3>
-    <div class="col-8">
-        <div <ul class="nav nav-tabs">
-        <li class="nav-item">
-            <a class="nav-link active" href="#">Bánh ngọt</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Bánh mặn</a>
-        </li>
-    </ul>
-        <div class="row">
-            <c:forEach var="product" items="${productList}">
-                <div class="card" style="width: 18rem;">
-                    <img src="<c:out value="${product.thumbnail}"/>" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title"><c:out value="${product.productName}"/> </h5>
-                        <p class="card-text"><c:out value="${product.price}"/>VND</p>
-                        <p class="card-text"><c:out value="${product.description}"/></p>
-                        <p class="card-text"><c:out value="${product.category.getCategoryName()}"/></p>
-                        <a href="#" class="btn btn-primary">Go to cart</a>
+    <div class="row" id="content">
+        <div class="col-8">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#banhngot">Bánh ngọt</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#banhman">Bánh mặn</a>
+                </li>
+            </ul>
+            <%--        tab panel--%>
+            <div class="tab-content">
+                <div id="banhngot" class="container tab-pane active">
+                    <div class="row">
+                        <c:forEach var="product" items="${productList}">
+                            <c:if test="${product.category.getCategoryId() == 1}">
+                                <div class="card" style="width: 18rem;">
+                                    <img src="<c:out value="${product.thumbnail}"/>" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><c:out value="${product.productName}"/> </h5>
+                                        <p class="card-text"><c:out value="${product.price}"/>VND</p>
+                                        <p class="card-text"><c:out value="${product.description}"/></p>
+                                        <p class="card-text"><c:out value="${product.category.getCategoryName()}"/></p>
+                                        <a href="#" class="btn btn-primary">Go to cart</a>
+                                    </div>
+                                </div>
+                            </c:if>
+                        </c:forEach>
                     </div>
                 </div>
-            </c:forEach>
+
+                <div id="banhman" class="container tab-pane fade">
+                    <div class="row">
+                        <c:forEach var="product" items="${productList}">
+                            <c:if test="${product.category.getCategoryId() == 2}">
+                                <div class="card" style="width: 18rem;">
+                                    <img src="<c:out value="${product.thumbnail}"/>" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><c:out value="${product.productName}"/> </h5>
+                                        <p class="card-text"><c:out value="${product.price}"/>VND</p>
+                                        <p class="card-text"><c:out value="${product.description}"/></p>
+                                            <%--                                    <p class="card-text"><c:out value="${product.category.getCategoryName()}"/></p>--%>
+                                        <a href="#" class="btn btn-primary">Go to cart</a>
+                                    </div>
+                                </div>
+                            </c:if>
+                        </c:forEach>
+                    </div>
+
+                </div>
+            </div>
+
         </div>
+        <div class="col-4" id="cart-box" style="border: 1px solid black"></div>
     </div>
-    <div class="col-4" id="cart-box">
-
-    </div>
-
 </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>--%>
+<%--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>--%>
+<%--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>--%>
+<script>
+    $(document).ready(function(){
+        $(".nav-tabs a").click(function(){
+            $(this).tab('show');
+        });
+    });
+</script>
 </html>

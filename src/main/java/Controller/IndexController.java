@@ -1,5 +1,6 @@
 package Controller;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +15,8 @@ public class IndexController extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.sendRedirect("View/index.jsp");
+//        response.sendRedirect("View/index.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("View/index.jsp");
+        dispatcher.forward(request,response);
     }
 }
