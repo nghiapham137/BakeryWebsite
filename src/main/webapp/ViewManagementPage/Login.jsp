@@ -29,7 +29,7 @@
             <div id="login-column" class="col-md-6">
                 <div id="login-box" class="col-md-12">
                     <%--                      THIS LINE IS IMPORTANT                      --%>
-                    <form id="login-form" class="form" action="../userControllerServlet?action=login" method="post">
+                    <form id="login-form" class="form" action="../userController?action=login" method="post">
                         <h3 class="text-center text-info" style="color: #fdfbfb !important;">Login</h3>
                         <div class="form-group">
                             <label for="username" class="text-info" style="color: #fdfbfb !important;">Username:</label><br>

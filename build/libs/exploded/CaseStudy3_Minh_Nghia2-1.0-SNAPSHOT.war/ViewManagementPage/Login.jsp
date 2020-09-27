@@ -18,42 +18,43 @@
 <%--    <img src="../ImageManagementPage/CodeGymLogo.png" style="height: 100px; width: 100px; align: middle">--%>
 <%--</div>--%>
 
-<form name="FormLogin" action="/login">
-    <div id="login">
-        <div>
-            <h3 class="text-center text-blue pt-5" style="color: #282781 !important;">Username: admin Password: admin</h3>
-            <br/>
-        </div>
+<div id="login">
+    <div>
+        <h3 class="text-center text-blue pt-5" style="color: #282781 !important;">Username: admin Password: admin Love at first bite <3</h3>
+        <br/>
+    </div>
 
-        <div class="container">
-            <div id="login-row" class="row justify-content-center align-items-center">
-                <div id="login-column" class="col-md-6">
-                    <div id="login-box" class="col-md-12">
-                        <form id="login-form" class="form" action="/login" method="post">
-                            <h3 class="text-center text-info" style="color: #fdfbfb !important;">Login</h3>
-                            <div class="form-group">
-                                <label for="username" class="text-info" style="color: #fdfbfb !important;">Username:</label><br>
-                                <input type="text" name="username" id="username" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="password" class="text-info" style="color: #fdfbfb !important;">Password:</label><br>
-                                <input type="text" name="password" id="password" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="remember-me" class="text-info" style="color: #fdfbfb !important;"><span>Remember me</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
-                                <input type="submit" name="submit" class="btn btn-info btn-md" value="submit" style="background-color: #fdfbfb !important; border-color: #ced4da !important;color: #282781 !important; font-weight: bold">
-                            </div>
-                            <div id="register-link" class="text-right">
-                                <a href="../View/index.jsp" class="text-info" style="color: #fdfbfb !important;">Home Page</a>
-                            </div>
-                        </form>
-                    </div>
+    <div class="container">
+        <div id="login-row" class="row justify-content-center align-items-center">
+            <div id="login-column" class="col-md-6">
+                <div id="login-box" class="col-md-12">
+                    <%--                      THIS LINE IS IMPORTANT                      --%>
+                    <form id="login-form" class="form" action="../userController?action=login" method="post">
+                        <h3 class="text-center text-info" style="color: #fdfbfb !important;">Login</h3>
+                        <div class="form-group">
+                            <label for="username" class="text-info" style="color: #fdfbfb !important;">Username:</label><br>
+                            <input type="text" name="username" id="username" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="text-info" style="color: #fdfbfb !important;">Password:</label><br>
+                            <input type="text" name="password" id="password" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="remember-me" class="text-info" style="color: #fdfbfb !important;"><span>Remember me</span> <span><input
+                                    id="remember-me" name="remember-me" type="checkbox"></span></label><br>
+                            <input type="submit" name="submit" class="btn btn-info btn-md" value="submit"
+                                   style="background-color: #fdfbfb !important; border-color: #ced4da !important;color: #282781 !important; font-weight: bold">
+                        </div>
+                        <div id="register-link" class="text-right">
+                            <a href="../View/index.jsp" class="text-info" style="color: #fdfbfb !important;">Home
+                                Page</a>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-</form>
-
+</div>
 
 </body>
 </html>
