@@ -1,5 +1,7 @@
 package Controller;
 
+import Model.Cart;
+import Model.Inline_item;
 import Model.Product;
 import Service.Service;
 
@@ -9,7 +11,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "UserServlet", urlPatterns = "/user")
@@ -42,6 +46,9 @@ public class OrderController extends HttpServlet {
                 case "order":
                     showOrderPage(request,response);
                     break;
+                case "addToCart":
+                    showCartBox(request,response);
+                    break;
                 default:
                     showHomePage(request,response);
                     break;
@@ -60,5 +67,52 @@ public class OrderController extends HttpServlet {
         request.setAttribute("productList", productList);
         RequestDispatcher dispatcher = request.getRequestDispatcher("View/Order.jsp");
         dispatcher.forward(request, response);
+    }
+
+    private void showCartBox(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int amount = 1;
+        int id;
+        if (request.getParameter("productId")!= null) {
+            id = Integer.parseInt(request.getParameter("productId"));
+            Product product = service.getProductById(id);
+            if (product != null) {
+                if(request.getParameter("amount")!= null) {
+                    amount = Integer.parseInt(request.getParameter("amount"));
+                }
+                HttpSession session = request.getSession();
+                if (session.getAttribute("cart") == null) {
+                    Cart cart = new Cart();
+                    List<Inline_item> listItems = new ArrayList<>();
+                    Inline_item item = new Inline_item();
+                    item.setAmount(amount);
+                    item.setProduct(product);
+                    item.setUnitPrice(product.getPrice());
+                    listItems.add(item);
+                    cart.setCart(listItems);
+                    session.setAttribute("cart", cart);
+                } else {
+                    Cart cart = (Cart) session.getAttribute("cart");
+                    List<Inline_item> listItems = cart.getCart();
+                    boolean check = false;
+                    for (Inline_item item : listItems) {
+                        if (item.getProduct().getProductId() == product.getProductId()) {
+                            item.setAmount(item.getAmount() + amount);
+                            check = true;
+                        }
+                    }
+                    if (!check) {
+                        Inline_item item = new Inline_item();
+                        item.setAmount(amount);
+                        item.setProduct(product);
+                        item.setUnitPrice(product.getPrice());
+                        listItems.add(item);
+                    }
+                    session.setAttribute("cart", cart);
+                }
+            }
+        }
+        RequestDispatcher dispatcher = request.getRequestDispatcher("View/Order.jsp");
+        dispatcher.forward(request, response);
+
     }
 }

@@ -16,10 +16,11 @@
   <link rel="stylesheet" href="../Style/HomeStyle.css">
 </head>
 <body>
-<div class="container" style="padding: 0">
+
+<div class="container-fluid">
   <div class="row" id="header">
     <nav class="navbar navbar-expand-lg " id="nav-bar">
-      <a class="navbar-brand" href="/index">Bakery</a>
+      <a class="navbar-brand" href="/index">PASTRIES</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
               aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -37,13 +38,18 @@
             <a class="nav-link" href="#">Contact</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About us</a>
+            <a class="nav-link" href="#about">About us</a>
           </li>
 
         </ul>
         <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          <button class="btn " type="submit">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+              <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+            </svg>
+          </button>
         </form>
       </div>
     </nav>
@@ -55,23 +61,23 @@
         <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
         <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
       </ol>
-      <div class="carousel-inner">
+      <div class="carousel-inner" >
         <div class="carousel-item active">
           <img src="https://image.freepik.com/free-photo/thread-candied-fruits-near-basket-with-bread_23-2147851939.jpg" class="d-block w-100" alt="...">
           <div class="carousel-caption d-none d-md-block">
-            <h5><a href="/user?action=order">Order now</a></h5>
+            <h5><a class="order-link" href="/user?action=order">Order now</a></h5>
           </div>
         </div>
         <div class="carousel-item">
           <img src="https://image.freepik.com/free-photo/rye-sliced-bread-table_1112-1265.jpg" class="d-block w-100" alt="...">
           <div class="carousel-caption d-none d-md-block">
-            <h5><a href="/user?action=order">Order now</a></h5>
+            <h5><a class="order-link" href="/user?action=order">Order now</a></h5>
           </div>
         </div>
         <div class="carousel-item">
           <img src="https://image.freepik.com/free-photo/top-view-delicious-little-cakes-with-purple-flowers_140725-28112.jpg" class="d-block w-100" alt="...">
           <div class="carousel-caption d-none d-md-block">
-            <h5><a href="/user?action=order">Order now</a></h5>
+            <h5><a class="order-link" href="/user?action=order">Order now</a></h5>
           </div>
         </div>
       </div>
@@ -124,58 +130,53 @@
   <div class="row" id="showMore">
     <h4 id="show2"><a href="/user?action=order" id="show">Show more</a></h4>
   </div>
-  <div class="row" id="introduction">
-    <div class="col-6">
-      <img src="https://image.freepik.com/free-photo/woman-cooking_144627-41633.jpg" class="img-fluid" id="girl" alt="girl"/>
+  <div class="row" id="about">
+    <div class="col-6 about-part">
+      <img src="https://image.freepik.com/free-photo/woman-cooking_144627-41671.jpg" class="img-fluid" id="girl" alt="girl"/>
     </div>
-    <div class="col-6" id="aboutUs">
+    <div class="col-6 about-part">
       <div class="col-10" id="text">
-        <h4 style="text-align: center; padding: 20px">About us</h4>
-        <p>nadald jj slaslsal asfl asflsflsal a f afksdakf sdk as fa dfdsa fsa fsld</p>
+        <h4 id="aboutUs">About us</h4>
+        <p>We believe in high performance and personal accountability. We take pride in our work and have passion for
+          everything we do. Open and honest communication is the cornerstone of everything Pastries. And we aren’t afraid
+          to innovate in the traditional baking industry.</p>
       </div>
 
     </div>
   </div>
-  <div class="row" id="about">
-    <div class="col-6">
+  <div class="row" id="introduction">
+    <div class="col-5" id="ingredient-text">
       <div class="col-10" id="ingredient">
         <h4 style="text-align: center; padding: 20px">Ingredients</h4>
-        <p>We use best ingredients in the world to make best quality pastry product to our customers</p>
+        <p>Fresh, handcrafted bread and treats. Quality, carefully sourced ingredients. Friends and family.
+          Passion and curiosity. We’re up at the crack of dawn so our bakeries smell like Mom’s kitchen.
+          After each day of sharing our love for all things fluffy and flaky, we pay it forward by donating
+          leftover baked goods to local charities.</p>
       </div>
 
     </div>
-    <div class="col-3">
+    <div class="col-3 ingredient-pic">
       <img src="https://image.freepik.com/free-photo/flour-wheat-flat-lay-wooden_176474-7337.jpg" class="img-fluid" alt="ingredient">
     </div>
-    <div class="col-3">
-      <img src="https://image.freepik.com/free-photo/baking-ingredient-flour-egg-milk-rolling-pin-top-view_1150-25529.jpg" class="img-fluid" alt="eggs">
+    <div class="col-3 ingredient-pic">
+      <img src="https://image.freepik.com/free-photo/different-baking-ingredients-table_144627-29073.jpg" class="img-fluid" alt="eggs">
     </div>
   </div>
-  <div class="row" id="contact" style="display: block; background-color: #434343">
-    <h4 style="width: 100%; text-align: center">Contact us</h4>
-    <p style="width: 100%; text-align: center">BakeryShop.com / Tel: 123-456-789</p>
-    <br/>
-    <label>
-      Enter your name
-      <input type="text" placeholder="name">
-    </label><br/>
-    <label>
-      Enter your email
-      <input type="text" placeholder="email">
-    </label><br/>
-    <label>
-      Enter your subject
-      <input type="text" placeholder="subject">
-    </label><br/>
-    <label>
-      Enter your message
-      <textarea placeholder="email"></textarea>
-    </label>
-    <input type="submit" value="submit">
+  <div id="contact">
+    <h3>Contact us</h3>
+    <p>Shop:</p>
+    <br>
+    <p>144 Xa Dan, Dong Da</p>
+    <br>
+    <p>Ha Noi, Viet Nam</p>
+    <br>
+    <p>Phone: +84 123 456 789</p>
+    <br>
+    <p>Email: feedback@patries.com</p>
 
   </div>
-  <footer class="row" id="footer" style="background-color: #fdfbfb">
-    <p>CopyRight by Nghia_Minh</p>
+  <footer>
+    <p>©CopyRight by Pastries.All right reserved</p>
   </footer>
 </div>
 

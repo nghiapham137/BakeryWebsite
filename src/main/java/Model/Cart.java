@@ -4,28 +4,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cart {
-    private List<Inline_item> cart;
+    private List<Inline_item> listItems;
+
+    public Cart(List<Inline_item> listItems) {
+        this.listItems = listItems;
+    }
 
     public Cart() {
-        cart = new ArrayList<Inline_item>();
+
     }
 
-    public void AddProduct(Inline_item item) {
-        if (cart.contains(item)) {
-            Inline_item i = cart.get(cart.indexOf(item));
-            i.setAmount(i.getAmount() + item.getAmount());
-        }else {
-            cart.add(item);
-        }
+    public List<Inline_item> getCart() {
+        return listItems;
     }
 
-    public ArrayList<Inline_item> getItem() {
-        return (ArrayList<Inline_item>) cart;
+    public void setCart(List<Inline_item> cart) {
+        this.listItems = cart;
     }
+
 
     public boolean deleteProduct(Inline_item item) {
-        if (cart.contains(item)) {
-            cart.remove(item);
+        if (listItems.contains(item)) {
+            listItems.remove(item);
             return true;
         }
         return false;
@@ -33,7 +33,7 @@ public class Cart {
 
     public float getTotalPrice(){
         float price = 0;
-        for (Inline_item item : cart) {
+        for (Inline_item item : listItems) {
             price += item.getUnitPrice() * item.getAmount();
         }
         return price;

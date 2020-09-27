@@ -19,7 +19,7 @@
 <div class="container">
     <div class="row" id="header">
         <nav class="navbar navbar-expand-lg " id="nav-bar">
-            <a class="navbar-brand" href="/user">Bakery</a>
+            <a class="navbar-brand" href="/index">Bakery</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -27,7 +27,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="/user">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/index">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true" >Order</a>
@@ -71,7 +71,7 @@
                                         <p class="card-text"><c:out value="${product.price}"/>VND</p>
                                         <p class="card-text"><c:out value="${product.description}"/></p>
                                         <p class="card-text"><c:out value="${product.category.getCategoryName()}"/></p>
-                                        <a href="#" class="btn btn-primary">Go to cart</a>
+                                        <a href="/user?action=addToCart&productId=${product.getProductId()}" class="btn btn-primary">Go to cart</a>
                                     </div>
                                 </div>
                             </c:if>
@@ -90,7 +90,7 @@
                                         <p class="card-text"><c:out value="${product.price}"/>VND</p>
                                         <p class="card-text"><c:out value="${product.description}"/></p>
                                             <%--                                    <p class="card-text"><c:out value="${product.category.getCategoryName()}"/></p>--%>
-                                        <a href="#" class="btn btn-primary">Go to cart</a>
+                                        <a href="/user?action=addToCart&productId=${product.getProductId()}" class="btn btn-primary">Go to cart</a>
                                     </div>
                                 </div>
                             </c:if>
@@ -101,7 +101,29 @@
             </div>
 
         </div>
-        <div class="col-4" id="cart-box" style="border: 1px solid black"></div>
+        <div class="col-4" id="cart-box" style="border: 1px solid black">
+            <div class="row" style="border: 1px solid black">
+                <h4>My Cart</h4>
+                <p>Item</p>
+            </div>
+            <div class="row">
+                <table>
+                    <c:forEach items="${listItems}" var="list">
+                        <tr>
+                            <td><c:out value="${list.getProduct.getProductName()}"/></td>
+                            <td><c:out value="${list.getCart.getAmount()}"/></td>
+                            <td><c:out value="${list.getUnitPrice()}"/></td>
+                            <td><button value="Add">Add</button></td>
+                            <td><button value="delete">Delete</button> </td>
+                        </tr>
+                    </c:forEach>
+
+                </table>
+                <h4>Total: </h4>
+                <button value="Checkout">Check Out</button>
+            </div>
+
+        </div>
     </div>
 </div>
 </body>

@@ -49,5 +49,27 @@ public class Service implements Iservice{
         return null;
     }
 
+    public Product getProductById(int id) {
+        Product product = null;
+        String query = "select * from product where product_id = " + id + ";";
+        try (Connection connection = getConnection();
+             Statement statement = connection.createStatement();){
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                int productId = resultSet.getInt("product_id");
+                String productName = resultSet.getString("product_name");
+                int amount = resultSet.getInt("amount");
+                Float price = resultSet.getFloat("price");
+                String thumbnail = resultSet.getString("thumbnail");
+                String description = resultSet.getString("description");
+                int category_id = resultSet.getInt("category_id");
+                product = new Product(productId, productName, amount, price, thumbnail, description, categoryService.getCategoryById(category_id));
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return product;
+    }
+
 
 }

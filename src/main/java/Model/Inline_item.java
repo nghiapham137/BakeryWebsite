@@ -2,16 +2,20 @@ package Model;
 
 public class Inline_item {
     private int itemId;
-    private String itemName;
+    private Product product;
     private int amount;
     private float unitPrice;
 
-    public Inline_item(int itemId, String itemName, int amount, float unitPrice) {
+    public Inline_item(int itemId, Product product, int amount, float unitPrice) {
         super();
         this.itemId = itemId;
-        this.itemName = itemName;
+        this.product = product;
         this.amount = amount;
         this.unitPrice = unitPrice;
+    }
+
+    public Inline_item() {
+
     }
 
     public int getItemId() {
@@ -22,12 +26,13 @@ public class Inline_item {
         this.itemId = itemId;
     }
 
-    public String getItemName() {
-        return itemName;
+
+    public Product getProduct() {
+        return product;
     }
 
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public int getAmount() {

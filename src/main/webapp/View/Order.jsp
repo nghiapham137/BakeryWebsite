@@ -71,7 +71,7 @@
                                         <p class="card-text"><c:out value="${product.price}"/>VND</p>
                                         <p class="card-text"><c:out value="${product.description}"/></p>
                                         <p class="card-text"><c:out value="${product.category.getCategoryName()}"/></p>
-                                        <a href="#" class="btn btn-primary">Go to cart</a>
+                                        <a href="/user?action=addToCart&productId=${product.getProductId()}" class="btn btn-primary">Go to cart</a>
                                     </div>
                                 </div>
                             </c:if>
@@ -90,7 +90,7 @@
                                         <p class="card-text"><c:out value="${product.price}"/>VND</p>
                                         <p class="card-text"><c:out value="${product.description}"/></p>
                                             <%--                                    <p class="card-text"><c:out value="${product.category.getCategoryName()}"/></p>--%>
-                                        <a href="#" class="btn btn-primary">Go to cart</a>
+                                        <a href="/user?action=addToCart&productId=${product.getProductId()}" class="btn btn-primary">Go to cart</a>
                                     </div>
                                 </div>
                             </c:if>
@@ -101,7 +101,29 @@
             </div>
 
         </div>
-        <div class="col-4" id="cart-box" style="border: 1px solid black"></div>
+        <div class="col-4" id="cart-box" style="border: 1px solid black">
+            <div class="row" style="border: 1px solid black">
+                <h4>My Cart</h4>
+                <p>Item</p>
+            </div>
+            <div class="row">
+                <table>
+                    <c:forEach items="${listItems}" var="list">
+                        <tr>
+                            <td><c:out value="${list.getProduct.getProductName()}"/></td>
+                            <td><c:out value="${list.getCart.getAmount()}"/></td>
+                            <td><c:out value="${list.getUnitPrice()}"/></td>
+                            <td><button value="Add">Add</button></td>
+                            <td><button value="delete">Delete</button> </td>
+                        </tr>
+                    </c:forEach>
+
+                </table>
+                <h4>Total: </h4>
+                <button value="Checkout">Check Out</button>
+            </div>
+
+        </div>
     </div>
 </div>
 </body>
