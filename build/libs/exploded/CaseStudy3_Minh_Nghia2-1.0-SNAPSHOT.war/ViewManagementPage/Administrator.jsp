@@ -31,7 +31,7 @@
         <div class="collapse navbar-collapse" id="main_nav">
             <ul class="navbar-nav">
                 <li class="nav-item active"><a class="nav-link" href="../ViewManagementPage/Administrator.jsp"> Dashboard </a></li>
-                <li class="nav-item"><a class="nav-link" href="../ViewManagementPage/ProductManagement.jsp"> Product Management </a></li>
+                <li class="nav-item"><a class="nav-link" href="../ViewManagementPage/ProductManagement.jsp" methods="get" action="../ProductControllerServlet"> Product Management </a></li>
                 <li class="nav-item"><a class="nav-link" href="../ViewManagementPage/OrderManagement.jsp"> Order Management </a></li>
                 <li class="nav-item"><a class="nav-link" href="../ViewManagementPage/UserManagement.jsp"> User Management </a></li>
             </ul>

@@ -1,6 +1,6 @@
 package ControllerManagement;
 
-import ModelManagement.ServiceManagement.UserServiceImplement;
+import ModelManagement.ServiceManagement.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,7 +12,7 @@ import java.io.IOException;
 @WebServlet(name = "userControllerServlet", urlPatterns = {"/userController"})
 public class UserControllerServlet extends HttpServlet {
 
-    private UserServiceImplement userServiceImplement = new UserServiceImplement();
+    private UserService userService = new UserService();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -20,7 +20,7 @@ public class UserControllerServlet extends HttpServlet {
             case "login":
                 String username = request.getParameter("username");
                 String password = request.getParameter("password");
-                boolean isLogged = userServiceImplement.login(username, password);
+                boolean isLogged = userService.login(username, password);
                 if (isLogged) {
                     try {
                         response.sendRedirect("../ViewManagementPage/Administrator.jsp");

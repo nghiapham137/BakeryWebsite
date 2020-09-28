@@ -10,7 +10,7 @@ import java.sql.Statement;
 
 import ModelManagement.DataAccessLayer.ConnectDatabase;
 
-public class UserServiceImplement {
+public class UserService {
 
     public boolean login(String username, String password) {
         boolean isLogin = false;

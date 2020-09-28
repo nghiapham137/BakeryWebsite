@@ -42,8 +42,7 @@
                                    style="background-color: #fdfbfb !important; border-color: #ced4da !important;color: #282781 !important; font-weight: bold">
                         </div>
                         <div id="register-link" class="text-right">
-                            <a href="../View/index.jsp" class="text-info" style="color: #fdfbfb !important;">Home
-                                Page</a>
+                            <a href="../View/index.jsp" class="text-info" style="color: #fdfbfb !important;">Home Page</a>
                         </div>
                     </form>
                 </div>

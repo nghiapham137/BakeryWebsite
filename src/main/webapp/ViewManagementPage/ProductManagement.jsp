@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Minh Nguyễn
@@ -21,17 +22,16 @@
             type="text/javascript"></script>
 </head>
 <body>
-
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top bg-primary">
     <div class="container">
         <a class="navbar-brand" href="../View/index.jsp">HomePage</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="main_nav">
             <ul class="navbar-nav">
                 <li class="nav-item"><a class="nav-link" href="../ViewManagementPage/Administrator.jsp"> Dashboard </a></li>
-                <li class="nav-item active"><a class="nav-link" href="../ViewManagementPage/ProductManagement.jsp"> Product Management </a></li>
+                <form action="../ProductControllerServlet" method="post" name="ProductManagement">
+                    <li class="nav-item active"><a class="nav-link" href="../ViewManagementPage/ProductManagement.jsp">Product Management </a></li>
+                </form>
                 <li class="nav-item"><a class="nav-link" href="../ViewManagementPage/OrderManagement.jsp"> Order Management </a></li>
                 <li class="nav-item"><a class="nav-link" href="../ViewManagementPage/UserManagement.jsp"> User Management </a></li>
             </ul>
@@ -60,52 +60,23 @@
                 <th class="text-center">Action</th>
             </tr>
             </thead>
-            <tr>
-                <td>1</td>
-                <td>Name</td>
-                <td>Amount</td>
-                <td>Price</td>
-                <td>Description</td>
-                <td>Thumbnail</td>
-                <td>Category</td>
-                <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
-            </tr>
-            <%--            <tr>--%>
-            <%--                <td>2</td>--%>
-            <%--                <td>Products</td>--%>
-            <%--                <td>Main Products</td>--%>
-            <%--                <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>--%>
-            <%--            </tr>--%>
-            <%--            <tr>--%>
-            <%--                <td>3</td>--%>
-            <%--                <td>Blogs</td>--%>
-            <%--                <td>Parent Blogs</td>--%>
-            <%--                <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>--%>
-            <%--            </tr>--%>
-            <%--            <tr>--%>
-            <%--                <td>4</td>--%>
-            <%--                <td>Blogs</td>--%>
-            <%--                <td>Parent Blogs</td>--%>
-            <%--                <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>--%>
-            <%--            </tr>--%>
-            <%--            <tr>--%>
-            <%--                <td>5</td>--%>
-            <%--                <td>Blogs</td>--%>
-            <%--                <td>Parent Blogs</td>--%>
-            <%--                <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>--%>
-            <%--            </tr>--%>
-            <%--            <tr>--%>
-            <%--                <td>6</td>--%>
-            <%--                <td>Blogs</td>--%>
-            <%--                <td>Parent Blogs</td>--%>
-            <%--                <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>--%>
-            <%--            </tr>--%>
-            <%--            <tr>--%>
-            <%--                <td>7</td>--%>
-            <%--                <td>Blogs</td>--%>
-            <%--                <td>Parent Blogs</td>--%>
-            <%--                <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>--%>
-            <%--            </tr>--%>
+            <tbody>
+            <c:forEach var="item" items="${products}" varStatus="loop">
+                <tr>
+                    <td>${item.productId}</td>
+                    <td>${item.productName}</td>
+                    <td>${item.amount}</td>
+                    <td>${item.price}</td>
+                    <td>${item.description}</td>
+                    <td>${item.thumbnail}</td>
+                    <td>${item.category}</td>
+                    <td class="text-center">
+                        <a class='btn btn-info btn-xs' href="/productController?action=update" ><span class="glyphicon glyphicon-edit"></span>Edit</a>
+                        <a class="btn btn-danger btn-xs" href="/productController?action=delete&id=${item.productId}" ><span class="glyphicon glyphicon-remove"></span>Del</a>
+                    </td>
+                </tr>
+            </c:forEach>
+            </tbody>
         </table>
     </div>
 
