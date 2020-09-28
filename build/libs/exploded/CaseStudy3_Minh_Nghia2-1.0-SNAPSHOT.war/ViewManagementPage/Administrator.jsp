@@ -9,8 +9,39 @@
 <html>
 <head>
     <title>Administrator</title>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+            crossorigin="anonymous"></script>
+
+    <!-- Bootstrap files (jQuery first, then Popper.js, then Bootstrap JS) -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
+          type="text/css"/>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"
+            type="text/javascript"></script>
 </head>
 <body>
-welcome to management page
+
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top bg-primary">
+    <div class="container">
+        <a class="navbar-brand" href="../View/index.jsp">HomePage</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="main_nav">
+            <ul class="navbar-nav">
+                <li class="nav-item active"><a class="nav-link" href="../ViewManagementPage/Administrator.jsp"> Dashboard </a></li>
+                <li class="nav-item"><a class="nav-link" href="../ViewManagementPage/ProductManagement.jsp"> Product Management </a></li>
+                <li class="nav-item"><a class="nav-link" href="../ViewManagementPage/OrderManagement.jsp"> Order Management </a></li>
+                <li class="nav-item"><a class="nav-link" href="../ViewManagementPage/UserManagement.jsp"> User Management </a></li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="#"> Logout </a></li>
+            </ul>
+        </div> <!-- navbar-collapse.// -->
+    </div><!-- container //  -->
+</nav>
+
+
 </body>
 </html>

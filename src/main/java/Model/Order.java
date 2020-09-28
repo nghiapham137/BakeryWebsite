@@ -12,7 +12,8 @@ public class Order {
     private String customerAddress;
     private List<Product> products;
 
-    public Order() {}
+    public Order() {
+    }
 
     public Order(Date orderDate, String customerName, String customerEmail, String customerPhone, String customerAddress, List<Product> products) {
         this.orderDate = orderDate;

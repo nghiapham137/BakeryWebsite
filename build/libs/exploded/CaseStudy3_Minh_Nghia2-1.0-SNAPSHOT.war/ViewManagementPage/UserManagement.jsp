@@ -1,14 +1,14 @@
 <%--
   Created by IntelliJ IDEA.
   User: Minh Nguyễn
-  Date: 9/27/2020
-  Time: 9:57 PM
+  Date: 9/28/2020
+  Time: 8:23 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Administrator</title>
+    <title>User Management</title>
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"
             integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
@@ -30,10 +30,10 @@
         </button>
         <div class="collapse navbar-collapse" id="main_nav">
             <ul class="navbar-nav">
-                <li class="nav-item active"><a class="nav-link" href="../ViewManagementPage/Administrator.jsp"> Dashboard </a></li>
+                <li class="nav-item"><a class="nav-link" href="../ViewManagementPage/Administrator.jsp"> Dashboard </a></li>
                 <li class="nav-item"><a class="nav-link" href="../ViewManagementPage/ProductManagement.jsp"> Product Management </a></li>
                 <li class="nav-item"><a class="nav-link" href="../ViewManagementPage/OrderManagement.jsp"> Order Management </a></li>
-                <li class="nav-item"><a class="nav-link" href="../ViewManagementPage/UserManagement.jsp"> User Management </a></li>
+                <li class="nav-item active"><a class="nav-link" href="../ViewManagementPage/UserManagement.jsp"> User Management </a></li>
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a class="nav-link" href="#"> Logout </a></li>
@@ -41,7 +41,6 @@
         </div> <!-- navbar-collapse.// -->
     </div><!-- container //  -->
 </nav>
-
 
 </body>
 </html>

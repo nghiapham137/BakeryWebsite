@@ -10,17 +10,14 @@
 <head>
     <title>Login</title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
-<%--    <link rel="stylesheet" href="/StyleManagementPage/LoginStyle.css"/>--%>
+    <%--    <link rel="stylesheet" href="/StyleManagementPage/LoginStyle.css"/>--%>
 </head>
 <body style="background: #282781 !important;">
 
-<%--<div>--%>
-<%--    <img src="../ImageManagementPage/CodeGymLogo.png" style="height: 100px; width: 100px; align: middle">--%>
-<%--</div>--%>
-
 <div id="login">
     <div>
-        <h3 class="text-center text-blue pt-5" style="color: #282781 !important;">Username: admin Password: admin Love at first bite <3</h3>
+        <h3 class="text-center text-blue pt-5" style="color: #282781 !important;">Username: admin Password: admin Love
+            at first bite <3</h3>
         <br/>
     </div>
 
@@ -28,7 +25,6 @@
         <div id="login-row" class="row justify-content-center align-items-center">
             <div id="login-column" class="col-md-6">
                 <div id="login-box" class="col-md-12">
-                    <%--                      THIS LINE IS IMPORTANT                      --%>
                     <form id="login-form" class="form" action="../userController?action=login" method="post">
                         <h3 class="text-center text-info" style="color: #fdfbfb !important;">Login</h3>
                         <div class="form-group">

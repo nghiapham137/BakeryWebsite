@@ -15,6 +15,7 @@ import java.util.List;
 @WebServlet(name = "UserServlet", urlPatterns = "/user")
 public class OrderController extends HttpServlet {
     Service service = new Service();
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         if (action == null) {
@@ -27,7 +28,7 @@ public class OrderController extends HttpServlet {
                     break;
 
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -40,13 +41,13 @@ public class OrderController extends HttpServlet {
         try {
             switch (action) {
                 case "order":
-                    showOrderPage(request,response);
+                    showOrderPage(request, response);
                     break;
                 default:
-                    showHomePage(request,response);
+                    showHomePage(request, response);
                     break;
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
