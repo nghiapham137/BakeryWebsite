@@ -1,6 +1,7 @@
 package ModelManagement.ServiceManagement;
 
 import ModelManagement.DataAccessLayer.ConnectDatabase;
+import ModelManagement.Entities.Category;
 import ModelManagement.Entities.Product;
 
 import java.sql.CallableStatement;
@@ -27,7 +28,8 @@ public class ProductService {
                 String thumbnailProduct = resultSet.getString(5);
                 String descriptionProduct = resultSet.getString(6);
                 int categoryId = resultSet.getInt(7);
-                int categoryName = resultSet.getInt(8);
+                String categoryName = resultSet.getString(8);
+                productList.add(new Product(idProduct, nameProduct, amountProduct, priceProduct, descriptionProduct, thumbnailProduct, new Category(categoryId, categoryName)));
             }
             connection.close();
         } catch (Exception ex) {
