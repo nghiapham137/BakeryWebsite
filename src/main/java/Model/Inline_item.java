@@ -1,14 +1,12 @@
 package Model;
 
 public class Inline_item {
-    private int itemId;
     private Product product;
     private int amount;
     private float unitPrice;
 
-    public Inline_item(int itemId, Product product, int amount, float unitPrice) {
+    public Inline_item( Product product, int amount, float unitPrice) {
         super();
-        this.itemId = itemId;
         this.product = product;
         this.amount = amount;
         this.unitPrice = unitPrice;
@@ -17,15 +15,6 @@ public class Inline_item {
     public Inline_item() {
 
     }
-
-    public int getItemId() {
-        return itemId;
-    }
-
-    public void setItemId(int itemId) {
-        this.itemId = itemId;
-    }
-
 
     public Product getProduct() {
         return product;
