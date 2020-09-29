@@ -104,23 +104,26 @@
         <div class="col-4" id="cart-box" style="border: 1px solid black">
             <div class="row" style="border: 1px solid black">
                 <h4>My Cart</h4>
-                <p>Item</p>
+                <p><c:out value="${cart.getTotalItemInCard()}"/> </p>
             </div>
             <div class="row">
                 <table>
-                    <c:forEach items="${listItems}" var="list">
+                    <c:forEach items="${cart.getCart()}" var="list">
                         <tr>
-                            <td><c:out value="${list.getProduct.getProductName()}"/></td>
-                            <td><c:out value="${list.getCart.getAmount()}"/></td>
+                            <td><c:out value="${list.getProduct().getProductName()}"/></td>
+                            <td><c:out value="${list.getAmount()}"/></td>
                             <td><c:out value="${list.getUnitPrice()}"/></td>
-                            <td><button value="Add">Add</button></td>
-                            <td><button value="delete">Delete</button> </td>
+                            <td><a href="/user?action=addToCart&productId=${list.getProduct().getProductId()}">+</a> </td>
+                            <td><a href="/user?action=deleteFromCart&productId=${list.getProduct().getProductId()}">-</a> </td>
                         </tr>
                     </c:forEach>
 
                 </table>
-                <h4>Total: </h4>
-                <button value="Checkout">Check Out</button>
+                <div>
+                    <h4><c:out value="${cart.getTotalPrice()}"/> </h4>
+                    <button value="Checkout">Check Out</button>
+                </div>
+
             </div>
 
         </div>

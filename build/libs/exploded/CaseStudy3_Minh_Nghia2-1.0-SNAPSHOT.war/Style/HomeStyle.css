@@ -205,6 +205,7 @@ body {
     height: 400px;
     background-color: white;
     margin: 0;
+    line-height: 0.5;
 }
 footer {
     margin: 0;

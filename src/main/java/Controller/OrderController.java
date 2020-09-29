@@ -49,6 +49,9 @@ public class OrderController extends HttpServlet {
                 case "addToCart":
                     showCartBox(request,response);
                     break;
+                case "deleteFromCart":
+                    deleteFromCart(request,response);
+                    break;
                 default:
                     showHomePage(request,response);
                     break;
@@ -70,49 +73,30 @@ public class OrderController extends HttpServlet {
     }
 
     private void showCartBox(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int amount = 1;
-        int id;
-        if (request.getParameter("productId")!= null) {
-            id = Integer.parseInt(request.getParameter("productId"));
-            Product product = service.getProductById(id);
-            if (product != null) {
-                if(request.getParameter("amount")!= null) {
-                    amount = Integer.parseInt(request.getParameter("amount"));
-                }
-                HttpSession session = request.getSession();
-                if (session.getAttribute("cart") == null) {
-                    Cart cart = new Cart();
-                    List<Inline_item> listItems = new ArrayList<>();
-                    Inline_item item = new Inline_item();
-                    item.setAmount(amount);
-                    item.setProduct(product);
-                    item.setUnitPrice(product.getPrice());
-                    listItems.add(item);
-                    cart.setCart(listItems);
-                    session.setAttribute("cart", cart);
-                } else {
-                    Cart cart = (Cart) session.getAttribute("cart");
-                    List<Inline_item> listItems = cart.getCart();
-                    boolean check = false;
-                    for (Inline_item item : listItems) {
-                        if (item.getProduct().getProductId() == product.getProductId()) {
-                            item.setAmount(item.getAmount() + amount);
-                            check = true;
-                        }
-                    }
-                    if (!check) {
-                        Inline_item item = new Inline_item();
-                        item.setAmount(amount);
-                        item.setProduct(product);
-                        item.setUnitPrice(product.getPrice());
-                        listItems.add(item);
-                    }
-                    session.setAttribute("cart", cart);
-                }
-            }
+        int  id = Integer.parseInt(request.getParameter("productId"));
+        Cart cart;
+             HttpSession session = request.getSession();
+             if (session.getAttribute("cart") == null) {
+                cart  = new Cart();
+                session.setAttribute("cart", cart);
+             } else {
+                  cart = (Cart) session.getAttribute("cart");
+             }
+        Inline_item items = cart.getItemByProductId(id);
+        items.setAmount(items.getAmount() + 1);
+        response.sendRedirect("/user?action=order");
+    }
+
+    private void deleteFromCart(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession();
+        Cart cart = (Cart) session.getAttribute("cart");
+        int id = Integer.parseInt(request.getParameter("productId"));
+        Inline_item item = cart.getItemByProductId(id);
+        item.setAmount(item.getAmount() - 1);
+        if (item.getAmount() == 0) {
+            cart.getCart().remove(item);
         }
-        RequestDispatcher dispatcher = request.getRequestDispatcher("View/Order.jsp");
-        dispatcher.forward(request, response);
+        response.sendRedirect("/user?action=order");
 
     }
 }
