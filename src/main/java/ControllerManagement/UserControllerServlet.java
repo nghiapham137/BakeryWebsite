@@ -34,18 +34,7 @@ public class UserControllerServlet extends HttpServlet {
                         System.out.println(exception);
                     }
                 } else {
-//                    request.setAttribute("errorString", "User Name or password invalid!");
-//                    RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("../ViewManagementPage/Login.jsp");
-//                    dispatcher.forward(request, response);
-
                     response.sendRedirect("../ViewManagementPage/Login.jsp");
-//
-//                    String errorString = "User Name or password invalid!";
-//
-//                    response.setContentType("text/plain");
-//                    response.setCharacterEncoding("UTF-8");
-//                    response.getWriter().write(errorString);
-
                 }
                 break;
             default:

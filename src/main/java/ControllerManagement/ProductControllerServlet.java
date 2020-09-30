@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -70,7 +71,6 @@ public class ProductControllerServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher;
         String action = request.getParameter("action");
         List<Category> categories = categoryService.getAll();
         action = action == null ? "" : action;
@@ -99,13 +99,22 @@ public class ProductControllerServlet extends HttpServlet {
             case "Update":
                 break;
             default:
-                List<Product> products = productService.getAll();
-                List<Category> categoryList = categoryService.getAll();
-                request.setAttribute("categories", categoryList);
-                request.setAttribute("products", products);
-                dispatcher = getServletContext().getRequestDispatcher("/ViewManagementPage/ProductManagement.jsp");
-                dispatcher.forward(request, response);
-                break;
+                try{
+                    HttpSession session = request.getSession();
+                    boolean checkLogin = (boolean) session.getAttribute("checkLogin");
+                    if(checkLogin){
+                        List<Product> products = productService.getAll();
+                        List<Category> categoryList = categoryService.getAll();
+                        request.setAttribute("categories", categoryList);
+                        request.setAttribute("products", products);
+                        dispatcher = getServletContext().getRequestDispatcher("/ViewManagementPage/ProductManagement.jsp");
+                        dispatcher.forward(request, response);
+                        break;
+                    }
+                }catch (NullPointerException e){
+                    dispatcher = getServletContext().getRequestDispatcher("/ViewManagementPage/error.jsp");
+                    dispatcher.forward(request, response);
+                }
         }
     }
 }

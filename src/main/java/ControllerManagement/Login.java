@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(name = "userControllerServlet", urlPatterns = {"/login"})
@@ -23,23 +24,15 @@ public class Login extends HttpServlet {
                 boolean isLogged = userService.login(username, password);
                 if (isLogged) {
                     try {
+                        HttpSession session = request.getSession();
+                        boolean checkLogin = true;
+                        session.setAttribute("checkLogin",checkLogin);
                         response.sendRedirect("/productController");
                     } catch (Exception exception) {
                         System.out.println(exception);
                     }
                 } else {
-//                    request.setAttribute("errorString", "User Name or password invalid!");
-//                    RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("../ViewManagementPage/Login.jsp");
-//                    dispatcher.forward(request, response);
-
                     response.sendRedirect("../ViewManagementPage/Login.jsp");
-//
-//                    String errorString = "User Name or password invalid!";
-//
-//                    response.setContentType("text/plain");
-//                    response.setCharacterEncoding("UTF-8");
-//                    response.getWriter().write(errorString);
-
                 }
                 break;
             default:
@@ -54,6 +47,9 @@ public class Login extends HttpServlet {
             case "login":
                 response.sendRedirect("/ViewManagementPage/Login.jsp");
                 break;
+            case  "logout":
+                HttpSession session = request.getSession();
+                session.invalidate();
             default:
                 response.sendRedirect("/ViewManagementPage/Login.jsp");
                 break;

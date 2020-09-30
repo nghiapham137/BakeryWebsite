@@ -33,14 +33,14 @@
 
         <div class="collapse navbar-collapse" id="main_nav">
             <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="../ViewManagementPage/Administrator.jsp"> Dashboard </a>
+                <li class="nav-item"><a class="nav-link" href="../ViewManagementPage/Dashboard.jsp"> Dashboard </a>
                 </li>
                 <li class="nav-item active"><a class="nav-link" href="/productController">Product Management </a></li>
                 <li class="nav-item"><a class="nav-link" href="/orderController"> Order Management </a></li>
-                <li class="nav-item"><a class="nav-link" href="/userController"> User Management </a></li>
+<%--                <li class="nav-item"><a class="nav-link" href="/userController"> User Management </a></li>--%>
             </ul>
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a class="nav-link" href="../View/index.jsp"> Logout </a></li>
+                <li class="nav-item"><a class="nav-link" href="/login?action=logout"> Logout </a></li>
             </ul>
         </div> <!-- navbar-collapse.// -->
     </div><!-- container //  -->
@@ -138,7 +138,6 @@
                         <a class="btn btn-danger btn-xs" data-toggle="modal" data-target="#Del${item.productId}">
                             <span class="glyphicon glyphicon-remove"></span>Del</a>
 
-
                         <!-- Modal delete-->
                         <div class="modal fade" id="Del${item.productId}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
@@ -158,7 +157,6 @@
                         </div>
 
                         <!-- Modal edit-->
-<%--                        <div class="modal fade addNewInputs" tabindex="-1" role="dialog" aria-labelledby="modalAdd" aria-hidden="true">--%>
                         <div class="modal fade addNewInputs" id="Edit${item.productId}" tabindex="-1" role="dialog" aria-labelledby="modalAdd" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">

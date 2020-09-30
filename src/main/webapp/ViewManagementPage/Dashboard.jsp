@@ -30,10 +30,10 @@
         </button>
         <div class="collapse navbar-collapse" id="main_nav">
             <ul class="navbar-nav">
-                <li class="nav-item active"><a class="nav-link" href="../ViewManagementPage/Administrator.jsp"> Dashboard </a></li>
+                <li class="nav-item active"><a class="nav-link" href="../ViewManagementPage/Dashboard.jsp"> Dashboard </a></li>
                 <li class="nav-item"><a class="nav-link" href="/productController"> Product Management </a></li>
                 <li class="nav-item"><a class="nav-link" href="/orderController"> Order Management </a></li>
-                <li class="nav-item"><a class="nav-link" href="/userController"> User Management </a></li>
+<%--                <li class="nav-item"><a class="nav-link" href="/userController"> User Management </a></li>--%>
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a class="nav-link" href="../View/index.jsp"> Logout </a></li>
