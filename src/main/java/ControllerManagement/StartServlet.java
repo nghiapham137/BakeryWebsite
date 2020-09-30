@@ -14,6 +14,6 @@ public class StartServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.sendRedirect("/userController");
+        response.sendRedirect("/login");
     }
 }

@@ -1,22 +1,16 @@
 package ControllerManagement;
 
-import ModelManagement.Entities.Product;
 import ModelManagement.ServiceManagement.UserService;
 
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
 
-@WebServlet(name = "userControllerServlet", urlPatterns = {"/userController"})
-public class UserControllerServlet extends HttpServlet {
+@WebServlet(name = "userControllerServlet", urlPatterns = {"/login"})
+public class Login extends HttpServlet {
 
     private UserService userService = new UserService();
 
@@ -54,21 +48,14 @@ public class UserControllerServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher;
         String action = request.getParameter("action");
         action = action == null ? "" : action;
         switch (action) {
-            case "add":
-                break;
-            case "delete":
-                break;
-            case "update":
+            case "login":
+                response.sendRedirect("/ViewManagementPage/Login.jsp");
                 break;
             default:
-//                List<Product> products = userService.getAll();
-//                request.setAttribute("products", products);
-                dispatcher = getServletContext().getRequestDispatcher("/ViewManagementPage/ProductManagement.jsp");
-                dispatcher.forward(request, response);
+                response.sendRedirect("/ViewManagementPage/Login.jsp");
                 break;
         }
     }

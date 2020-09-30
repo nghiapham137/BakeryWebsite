@@ -1,6 +1,8 @@
 package ControllerManagement;
 
+import ModelManagement.Entities.Category;
 import ModelManagement.Entities.Product;
+import ModelManagement.ServiceManagement.CategoryService;
 import ModelManagement.ServiceManagement.ProductService;
 
 import javax.servlet.RequestDispatcher;
@@ -16,16 +18,49 @@ import java.util.List;
 public class ProductControllerServlet extends HttpServlet {
 
     private ProductService productService = new ProductService();
+    private CategoryService categoryService = new CategoryService();
+
     RequestDispatcher dispatcher;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
+        List<Category> categories = categoryService.getAll();
         switch (action) {
-            case "ProductManagement":
-                List<Product> products = productService.getAll();
-                request.setAttribute("products", products);
-                dispatcher = getServletContext().getRequestDispatcher("../ViewManagementPage/ProductManagement.jsp");
-                dispatcher.forward(request, response);
+            case "Add":
+                String ProductName = request.getParameter("inputName");
+                int ProductAmount = Integer.parseInt(request.getParameter("inputAmount"));
+                float ProductPrice = Float.parseFloat(request.getParameter("inputPrice"));
+                String ProductDescription = request.getParameter("inputDescription");
+                String ProductThumbnail = request.getParameter("inputThumbnail");
+                int CategoryId = Integer.parseInt(request.getParameter("inputCategory"));
+                for (Category x : categories) {
+                    if (x.getCategoryId() == CategoryId) {
+                        Category category = new Category(x.getCategoryId(), x.getCategoryName());
+                        Product product = new Product(ProductName, ProductAmount, ProductPrice, ProductDescription, ProductThumbnail, category);
+                        productService.create(product);
+                    }
+                }
+                response.sendRedirect("/productController");
+                break;
+            case "Edit":
+                int id = Integer.parseInt(request.getParameter("id"));
+                String Name = request.getParameter("inputName");
+                int Amount = Integer.parseInt(request.getParameter("inputAmount"));
+                float Price = Float.parseFloat(request.getParameter("inputPrice"));
+                String Description = request.getParameter("inputDescription");
+                String Thumbnail = request.getParameter("inputThumbnail");
+                int EditCategoryId = Integer.parseInt(request.getParameter("inputCategory"));
+                for (Category x : categories) {
+                    if (x.getCategoryId() == EditCategoryId) {
+                        Category category = new Category(x.getCategoryId(), x.getCategoryName());
+                        productService.update(new Product(id, Name, Amount, Price, Description, Thumbnail, category));
+                    }
+                }
+                response.sendRedirect("/productController");
+                break;
+            case "Delete":
+
+
                 break;
             default:
                 response.sendRedirect("../ViewManagementPage/ProductManagement.jsp");
@@ -37,16 +72,36 @@ public class ProductControllerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher dispatcher;
         String action = request.getParameter("action");
+        List<Category> categories = categoryService.getAll();
         action = action == null ? "" : action;
         switch (action) {
-            case "add":
+            case "Add":
+                String ProductName = request.getParameter("inputName");
+                int ProductAmount = Integer.parseInt(request.getParameter("inputAmount"));
+                float ProductPrice = Float.parseFloat(request.getParameter("inputPrice"));
+                String ProductDescription = request.getParameter("inputDescription");
+                String ProductThumbnail = request.getParameter("inputThumbnail");
+                int CategoryId = Integer.parseInt(request.getParameter("inputCategory"));
+                for (Category x : categories) {
+                    if (x.getCategoryId() == CategoryId) {
+                        Category category = new Category(x.getCategoryId(), x.getCategoryName());
+                        Product product = new Product(ProductName, ProductAmount, ProductPrice, ProductDescription, ProductThumbnail, category);
+                        productService.create(product);
+                    }
+                }
+                response.sendRedirect("/productController");
                 break;
-            case "delete":
+            case "Delete":
+                int idProduct = Integer.parseInt(request.getParameter("id"));
+                productService.delete(idProduct);
+                response.sendRedirect("/productController");
                 break;
-            case "update":
+            case "Update":
                 break;
             default:
                 List<Product> products = productService.getAll();
+                List<Category> categoryList = categoryService.getAll();
+                request.setAttribute("categories", categoryList);
                 request.setAttribute("products", products);
                 dispatcher = getServletContext().getRequestDispatcher("/ViewManagementPage/ProductManagement.jsp");
                 dispatcher.forward(request, response);

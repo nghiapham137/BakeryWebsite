@@ -59,6 +59,7 @@ public class ProductService {
         try {
             Connection connection = ConnectDatabase.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(query);
+            System.out.println(query);
             preparedStatement.setString(1,product.getProductName());
             preparedStatement.setInt(2, product.getAmount());
             preparedStatement.setFloat(3, product.getPrice());
@@ -75,7 +76,7 @@ public class ProductService {
 
     public boolean update(Product product) {
         boolean isUpdate = false;
-        String query = "UPDATE product SET product_name=?  amount=? price=? description=? thumbnail=? category_id=? where product_id=?;";
+        String query = "UPDATE product SET product_name=?,  amount=?, price=?, description=?, thumbnail=?, category_id=? WHERE product_id=?;";
         try {
             Connection connection = ConnectDatabase.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -86,8 +87,8 @@ public class ProductService {
             preparedStatement.setString(5, product.getThumbnail());
             preparedStatement.setInt(6, product.getCategory().getCategoryId());
             preparedStatement.setInt(7, product.getProductId());
-            connection.close();
             isUpdate = preparedStatement.executeUpdate() > 0;
+            connection.close();
         } catch (Exception ex) {
             System.out.println(ex);
         }
